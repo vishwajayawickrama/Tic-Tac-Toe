@@ -1,0 +1,16 @@
+#gameboard {
+    width: 60%;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1px;
+    border: 2px solid black;
+}
+
+.square {
+    border: 2px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
