@@ -90,14 +90,14 @@ const Game = (() => {
         // GameBoard.render();
     }
 
-    const Reset = () => {
-        console.log(GameBoard.gameBoard)
-        document.querySelector('#gameboard').innerHTML = "";
-        let boardHTML = "";
-        document.querySelector('#gameboard').innerHTML = boardHTML;
-        console.log(GameBoard.gameBoard)
-        Game.Start();
-    }
+    // const Reset = () => {
+    //     console.log(GameBoard.gameBoard)
+    //     document.querySelector('#gameboard').innerHTML = "";
+    //     let boardHTML = "";
+    //     document.querySelector('#gameboard').innerHTML = boardHTML;
+    //     console.log(GameBoard.gameBoard)
+    //     Game.Start();
+    // }
 
     return { Start, handleClick, GameOver, Reset };
 
