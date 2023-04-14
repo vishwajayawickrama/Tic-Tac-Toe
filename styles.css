@@ -1,16 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
+
 #gameboard {
     width: 60%;
-    height: 500px;
+    height: 40vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 1px;
-    border: 2px solid black;
+    gap: 5px;
+    border: 10px solid black;
+    padding: 5px;
 }
 
 .square {
-    border: 2px solid blue;
+    border: 10px solid blue;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
 }

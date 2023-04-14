@@ -37,7 +37,7 @@ const Game = (() => {
 
     const Start = () => {
        players = [
-        CreatePlayer("player 1" , "X"),
+        CreatePlayer("Player 1" , "X"),
         CreatePlayer("Player 2", "0")
        ];
        currentPlayerIndex = 0;
@@ -60,20 +60,35 @@ const Game = (() => {
         console.log(squreIndex);
         GameBoard.render();
 
-        winningCombinations.forEach((combination) => {
+        winningCombinations.forEach(combination => {
             const [a, b, c] = combination;
             if (GameBoard.gameBoard[a] == GameBoard.gameBoard[b] && GameBoard.gameBoard[b] == GameBoard.gameBoard[c]) {
                 if (GameBoard.gameBoard[a] == "" || GameBoard.gameBoard[b] == "" || GameBoard.gameBoard[c] =="") {
                     return
                 }
-                console.log("winner");
-                document.querySelector('#winner-loser').innerHTML = "Winner"
-                gameOver = true
+                gameOver = true;
+                Game.GameOver();
             }
         });
     }
 
-    return { Start, handleClick };
+    const GameOver = () => {
+        if (gameOver == true) {
+            if (currentPlayerIndex == 1) {
+                document.querySelector('#winner-loser').innerHTML = `${players[0].name} with ${players[0].mark} is the Winner`;
+                console.log("X is the winner");
+            } else if (currentPlayerIndex == 0) {
+                document.querySelector('#winner-loser').innerHTML = `${players[1].name} with ${players[1].mark} is the Winner`;
+                console.log("0 is the winner");
+            }
+            GameBoard.gameBoard = ["", "", "", "", "", "", "", "", ""];
+            console.log("Game Over")
+            Game.Start()
+        }
+        // GameBoard.render();
+    }
+
+    return { Start, handleClick, GameOver };
 
 })();
 
