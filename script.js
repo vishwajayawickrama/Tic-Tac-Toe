@@ -1,16 +1,19 @@
 const GameBoard = (() => {
     const gameBoard = ["", "", "", "", "", "", "", "", ""];
-
+    // Rendering the Game Board
     const render = () => {
+        // Rendering the Game Board
         let boardHTML = "";
         gameBoard.forEach((square, index) => {
             boardHTML += `<div class="square" id="${index}">${square}</div>`
         })
         document.querySelector('#gameboard').innerHTML = boardHTML;
+        // Listening to clicks in Board and trigering event handler
         const squares = document.querySelectorAll('.square');
         squares.forEach((square) => {
             square.addEventListener('click', Game.handleClick);
         })
+        
     }
 
     return { render, gameBoard }
@@ -37,12 +40,13 @@ const Game = (() => {
 
     const Start = () => {
        players = [
-        CreatePlayer("Player 1" , "X"),
-        CreatePlayer("Player 2", "0")
+        CreatePlayer(document.querySelector('#player1').value, "X"),
+        CreatePlayer(document.querySelector('#player2').value, "0")
        ];
        currentPlayerIndex = 0;
        gameOver = false;
        GameBoard.render();
+       
     }
 
     const handleClick = (event) => {
@@ -81,15 +85,23 @@ const Game = (() => {
                 document.querySelector('#winner-loser').innerHTML = `${players[1].name} with ${players[1].mark} is the Winner`;
                 console.log("0 is the winner");
             }
-            GameBoard.gameBoard = ["", "", "", "", "", "", "", "", ""];
-            console.log("Game Over")
-            Game.Start()
+            console.log("Game Over") 
         }
         // GameBoard.render();
     }
 
-    return { Start, handleClick, GameOver };
+    const Reset = () => {
+        console.log(GameBoard.gameBoard)
+        document.querySelector('#gameboard').innerHTML = "";
+        let boardHTML = "";
+        document.querySelector('#gameboard').innerHTML = boardHTML;
+        console.log(GameBoard.gameBoard)
+        Game.Start();
+    }
+
+    return { Start, handleClick, GameOver, Reset };
 
 })();
 
 document.querySelector('#startgame').addEventListener('click', () => Game.Start());
+document.querySelector('#reset').addEventListener('click', () => Game.Reset());
